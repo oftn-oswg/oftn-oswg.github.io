@@ -163,6 +163,10 @@ footer span {
 	padding: 0 5px;
 }
 
+.projects dd { margin: 0; }
+.projects dd p { text-align: justify; }
+
+
 /* Android doesn't render background-scroll: fixed very well, here is a hack. */
 @media screen and (max-device-width: 480px) {
 	body {
