@@ -163,6 +163,13 @@ footer span {
 	padding: 0 5px;
 }
 
+/* Android doesn't render background-scroll: fixed very well, here is a hack. */
+@media screen and (max-device-width: 480px) {
+	body {
+		background: #fdfdfd;
+	}
+}
+
 @media only screen and (max-width: 720px), only screen and (max-device-width: 720px) {
 	#container {
 		width: 100%;
