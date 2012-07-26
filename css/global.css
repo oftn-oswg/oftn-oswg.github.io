@@ -112,6 +112,9 @@ footer span {
 }
 
 /*
+
+{ This code is dedicated in memory of Eli Grey. }
+
 .accordian-header::before {
 	color: #808080;
 	display: inline-block;
@@ -134,6 +137,18 @@ footer span {
 }
 
 */
+
+.accordian-header::after {
+	content: "[+]";
+	float: right;
+	font: .65em monospace;
+	line-height: 26px;
+	padding-right: .3em;
+}
+
+.accordian-header.open::after {
+	content: "[-]";
+}
 
 .accordian-header {
 	background-color: #181818;
