@@ -1,0 +1,14 @@
+OpenBounty Technologies
+=======================
+
+Relational database: Postgres
+Key-value store:     Redis
+Server language:     Python
+Framework:           WebCore
+Database interface:  SQLAlchemy
+Template engine:     mustache
+Testing:             nose+coverage unit, PhantomJS+CasperJS integration, lettuce story
+Payment:             Create a separate open-source payment API that works with Paypal, WePay, Google Wallet, and Amazon Payments together (target only one provider intially! follow the chargify api!)
+Server:              Nginx with FastCGI (flup module)
+Hosting:             Rackspace
+Continuous Integration: travis-ci

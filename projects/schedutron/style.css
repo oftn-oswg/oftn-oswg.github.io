@@ -1,0 +1,109 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #DFEEF6 url(http://support.twitter.com/images/clouds-light.gif) repeat-x 0 0;
+	margin: 1em;
+	margin-top: 200px;
+	font-size: 18px;
+	font-family: sans-serif;
+	color: #404040;
+	text-shadow: 1px 1px 1px #eeeeee;
+	text-align: center;
+}
+
+#container {
+	text-align: left;
+	width: 850px;
+	margin: 0 auto;
+}
+
+h1, h2 {
+	font-weight: normal;
+	margin-top: 2em;
+	padding-top: 1em;
+	margin-bottom: 1em;
+	letter-spacing: 10px;
+	text-shadow: 0 0 4px #08529C;
+	color: white;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+blockquote {
+	margin-bottom: 1.2em;
+	line-height: 1.5em;
+	letter-spacing: -1.5px;
+}
+
+a {
+	color: #000;
+}
+
+p {
+	line-height: 1.5em;
+	font-family: sans-serif;
+	letter-spacing: -1.5px;
+	margin: 1em 0;
+}
+
+dl {
+	width: 100%;
+	overflow: hidden;
+}
+dt {
+	font-weight: bold;
+	float: left;
+	clear: both;
+	width: 30%;
+	margin-right: 5%;
+}
+dd {
+	float: right;
+	width: 65%;
+}
+
+ol {
+	padding-left: 40px;
+	margin-top: 2em;
+}
+
+div#graphs {
+	margin-top: 1em;
+}
+
+div#graphs table {
+	background-color: #fff;
+	font-size: 12px;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1em 0;
+	text-align: center;
+}
+div#graphs table th {
+	font-weight: normal;
+}
+div#graphs table thead {
+	border-bottom: 1px solid #666;
+}
+div#graphs table .yes, .no, .number {
+	padding: 5px;
+}
+div#graphs table .number {
+	font-size: 16px;
+	font-weight: bold;
+}
+div#graphs table .no {
+	background-color: #555;
+	color: #555;
+}
+div#graphs table .yes {
+	background-color: #3cf;
+	color: #3cf;
+}
+
+

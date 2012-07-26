@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US-x-Hixie"> 
+<head>
+<meta charset="utf-8"/>
+<title>Schedutron</title>
+<link rel="stylesheet" type="text/css" href="../../css/global.css"/>
+<meta name="viewport" content="width=device-width"/>
+</head>
+<body>
+
+<div id="container">
+
+	<h1 id="schedutron">Schedutron</h1>
+
+	<p>Schedutron is a site by <a class="oftn" href="http://oftn.org/">ΩF:∅</a> where multiple people can easily choose a time for a meeting or event to occur. People all over the globe can choose a range of times in their local timezone. The site then takes all of this into account and produces a list of suggestions for times that will best suit everyone. It should also warn people of any conflicts; say person A has a time range that is not very convenient for the majority, or there are no overlapping time ranges which mean there is no common time. Ultimately one of the meeting coordinators takes these suggestions into account and sets up the meeting.</p>
+	
+	<ol>
+		<li><a href="#workflow">Workflow</a></li>
+		<li><a href="#user-interface">User Interface</a></li>
+		<li><a href="#design">Design</a></li>
+		<li><a href="#robot-mascot">Robot Mascot</a></li>
+		<li><a href="#technologies">Technologies</a></li>
+		<li><a href="#database">Database Structure</a></li>
+		<li><a href="#calculation">Calculation</a></li>
+		<li><a href="#algorithm">Algorithm</a></li>
+		<li><a href="#authentication">Authentication</a></li>
+	</ol>
+	
+	<h2 id="workflow">Workflow</h2>
+	
+	<p>The site should be made as simple as possible, so that people aren't forced to log in to use the services. Here is how this works:</p>
+
+	<p>First, the meeting coordinator goes to the Schedutron site to plan a meeting. They will prompted to enter their email address so that a link will be emailed to them so they can later change their time/manage things. At that point the email is sent. They are also asked to give themselves names/usernames/labels. Everyone else will see the labels.</p> 
+
+	<p>Next, they then copy links around to another people by chat/irc/however they please. They then click the link and are prompted to enter their own email and username/label. Now the system has all the people together by email.</p>
+
+	<p>The coordinators first choose a date range where the meeting can take place in. Then along with everyone else, they choose the times within the range that they can meet. The system calculates the best times in real time. The coordinators make a decision based off of this info (and optionally the DISQUS comments from other people) and choose an ultimate time they want to have the meeting. They are asked for a comfirmation. Once they submit the time, everyone is emailed about the meeting date and time.</p>
+
+	<p>If at any time the coordinators change their minds, they can do so, and everyone else is emailed about the change of plans.</p>
+	
+
+	<h2 id="user-interface">User Interface</h2>
+
+	<p>The user interface is made as simple as possible. The front page of the site will have a large button or link that says "Plan a meeting!".</p>
+	
+	<img src="slider-mockup.png" alt="Slider mockup by eboyjr" width="653" height="207"/>
+
+	<p>Choosing the times should be simple and clear to use. A slider across the span of a week can be used. In real-time, they can see what other people are putting as a layer underneath. The times that are selected will be brightest. The system calculates the best times in real time in a sidebar.</p>
+	
+
+	<h2 id="design">Design</h2>
+
+	<p>The site should definitely be well-designed and pleasing to the eye. </p>
+	
+	<img src="danielimmke.png" alt="Schedutron website design" title="Design by Daniel Immke" width="712" height="385"/>
+
+	<p>The time slider can be decorated, subtly, so that in the area of the slider which is night, we see stars and a moon, like the night sky. As the slider moves towards the right near the morning, we see colors like a sunrise. Closer to noon the sky is a sky blue color and we may even see a sun and tree and some birds in the air. The the sky gets to be a dark blue near the evening and returns to the dark blue with stars.</p>
+	
+
+	<h2 id="robot-mascot">Robot Mascot</h2>
+
+	<p>We need a robot mascot.</p>
+	
+
+	<h2 id="technologies">Technologies</h2>
+
+	<p>Some technologies we can incorporate are DISQUS for comments, and Google Calendar so the event can be synched automatically to there for Google users. We are using Google AppEngine as our platform. We will definitely use SSL by default since we want to respect the users privacy and keep their data safe. We can use Varnish to cache static parts of the site. For the database, we'll use BigTable if we're on GAE and Cassandra otherwise.</p>
+	
+
+	<h2 id="database">Database Structure</h2>
+
+	<p>We will need to convert for Cassandra or BigTable. Example filled struct:</p>
+
+<pre><code>meetings db [
+    0 {
+        # Whether or not meeting is a premium meeting
+        premium:
+            false
+        
+        # Used for pruning meetings (max-age of 1 year I guess)
+        last-activity:
+            2011-4-25
+            
+        # The date that the coordinators eventually choose. When set, everyone is notified
+        chosen-date:
+            null
+            
+        # Corresponds to participants who will be treated as coordinators
+        coordinators: [
+            0, 1
+        ]
+        
+        # Ranges that the coordinators choose for everyone to blahblah I can't word this
+        ranges: [
+            [2011-4-15, 2011-4-25]
+            [1337-6-09, 1337-6-29]
+        ]
+        
+        # List of all people (emails) that are involved in selecting time ranges
+        participants: [
+            0 "sephr@oftn"
+            1 "eboyjr@oftn"
+            2 "joe@shmoe.blows"
+            3 "anonymous@4chan.org"
+            4 "nigerian@princes.int"
+        ]
+        
+        # Special names that a person chooses for himself or a coordinator
+        labels: [
+            0 "sephr"
+            1 "eboyjr"
+            2 "joe"
+            3 null
+            4 null # they can be left blank and we just display email address
+        ]
+        
+        # Selected time ranges that person will be able to attend meeting
+        times: [
+            0 [
+                [2011-4-16, 11:30, 15:00]
+                [2011-4-20, 01:00, 05:00]
+            ]
+            1-4 [ etc. ]
+        ]
+    }
+]</code></pre>
+
+
+	<h2 id="calculation">Calculation</h2>
+
+	<p>First, each person uses a simple slider-like interface to choose time ranges that they will be able to meet. People will be able to select time ranges for a whole week period starting from the current date.</p>
+
+	<p>A time in the selection represents a 1 and all other times are 0. These numbers are added up to create a total for each column (hour). </p>
+
+	<p>Obviously the numbers that are highest represent the best time. Simple enough.</p>
+	
+
+	<h2 id="algorithm">Algorithm</h2>
+
+<pre><code>
+Given `times` is an array of range values (date ranges)
+
+Let `C equal 0 # This is the value of intersections set as list is traversed
+Let `M equal 0 # Maximum value of intersections
+Let `T equal ∅
+
+Let `R equal ∅
+
+For each time range in `times`:
+	Append start time to `T as start time
+	Append end time to `T as end time
+
+Sort `T by its time value
+
+For each value in `T:
+	If value is start time:
+		Increase `C by one
+		If `C > `M:
+			Let `M equal `C
+			Reset `R to ∅
+			Append value to `R as start of range
+
+	Else (value is end time):
+		If `C equals `M
+			Append value to `R as end of range
+		Decrease `C by one
+
+If `C is not 0:
+	Produce error... Number of range-starts does not equal range-ends
+
+# Ranges are now in `R
+</code></pre>
+    	
+    
+	<h2 id="authentication">Authentication</h2>
+	
+	<pre>schedutron-salt = {secret binary blob}
+meeting-id      = base36([meeting id from table])
+key             = base36(Skein(email + meeting-id + schedutron-salt))
+max-failed-attempts-per-hour = 14
+rand-key = base36(random key)</pre>
+
+	<p>Public invitations (can generate many of them and redact any of them later, along with people who used them):</p>
+	<pre>https://schedutron.com/meeting/<em class="fill-in">(meeting-id)</em>/S<em class="fill-in">(rand-key)</em></pre>
+
+	<p>Private invitations:</p>
+	<pre>https://schedutron.com/meeting/<em class="fill-in">(meeting-id)</em>/<em class="fill-in">(key)</em></pre>
+
+	<p>Coordinators should be able to invite people to the meeting as easy as copying a "sharing" link. Whoever clicks on the public invitation link is invited. They are prompted to enter their email address so they receive the private link to use to re-enter the site.</p>
+
+	<p>In case a random troll clicks on the link by mistake, the coordinators have the power to remove anyone from the group.</p>
+		
+</div>
+
+<script type="application/ecmascript" src="../../js/oftn/site.js"/>
+
+</body>
+</html>

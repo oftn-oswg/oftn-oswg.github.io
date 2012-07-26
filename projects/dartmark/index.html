@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>DartMark</title>
+<link type="text/css" href="css/DartMark.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/UndoStack.js"></script>
+<script type="text/javascript" src="js/DartMark.js"></script>
+<script type="text/javascript" src="js/DartMarkActions.js"></script>
+</head>
+<body>
+
+	<iframe class="dm_frame" src="template.html" id="dm"></iframe>
+	<div id="dm_info">
+		<div class="dm_box dm_right" id="dm_commands"></div>
+		<div class="dm_box dm_left">
+			<div id="dm_error" class="hidden"></div>
+			<div id="dm_selected"></div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+var frame, dm;
+
+var commands = [
+	["Interface", [
+		["Space",    "toggleHelp",    "Toggle this help"],
+		["U",        "undo",          "Undo"],
+		["R",        "redo",          "Redo"]
+	]],
+	["Cursor Movement", [
+		["Tab",      "moveForward",   "Next node"],
+		["ShiftTab", "moveBackward",  "Previous node"],
+		["Left",     "moveUp",        "Parent node"],
+		["Right",    "moveChild",     "First child"],
+		["Up",       "movePrev",      "Previous sibling"],
+		["Down",     "moveNext",      "Next sibling"],
+		["PageUp",   "moveFirst",     "First sibling"],
+		["PageDown", "moveLast",      "Last sibling"],
+		["Escape",   "clearCursor",   "Clear selection"]
+	]],
+	["Node Manipulation", [
+		["P",             "createPrev",     "Insert node before"],
+		["N",             "createNext",     "Insert node after"],
+		["B",             "createFirst",    "Insert as first child"],
+		["A",             "createLast",     "Insert as last child"],
+		["W",             "createParent",   "Wrap node with new"],
+		["E",             "replaceElement", "Change element tag"],
+		["I",             "editID",         "Change element ID"],
+		["Enter",         "replaceText",    "Replace children with text"],
+		[["D", "Delete"], "removeNode",     "Remove node"]
+	]]
+];
+
+var shortcuts = (function(commands) {
+	var group, element, header, dl, dt, dd, shortcuts = {};
+
+	element = document.getElementById ("dm_commands");
+	header = document.createElement ("h2");
+	header.appendChild (document.createTextNode ("Commands"));
+	element.appendChild (header);
+
+	commands.forEach (function(command) {
+		group = command[0];
+		header = document.createElement ("h3");
+		header.appendChild (document.createTextNode (group));
+		element.appendChild (header);
+
+		dl = document.createElement ("dl");
+
+		var keys = command[1];
+		keys.forEach (function(key) {
+			dt = document.createElement ("dt");
+
+			if (typeof key[0] === "string") {
+				dt.appendChild (document.createTextNode (key[0]));
+				shortcuts[key[0]] = key[1];
+			} else {
+				dt.appendChild (document.createTextNode (key[0].join("/")));
+				key[0].forEach (function(k) {
+					shortcuts[k] = key[1];
+				});
+			}
+
+			dl.appendChild (dt);
+
+			dd = document.createElement ("dd");
+			dd.appendChild (document.createTextNode (key[2]));
+			dl.appendChild (dd);
+		});
+
+		element.appendChild (dl);
+
+	});
+
+	return shortcuts;
+
+})(commands);
+
+frame = document.getElementById ("dm");
+frame.addEventListener ("load", function() {
+	dm = new DartMark (frame);
+	dm.shortcuts = shortcuts;
+	dm.output_help = document.getElementById ("dm_info");
+	dm.output_error = document.getElementById ("dm_error");
+	dm.output_breadcrumb = document.getElementById ("dm_selected");
+});
+</script>
+</body>
+</html>

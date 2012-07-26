@@ -1,0 +1,173 @@
+@charset "utf-8";
+
+@import url("http://fonts.googleapis.com/css?family=Asap");
+
+/* OFTN Aller is a modified version of Aller with an empty set and a raised colon.
+   Aller is copyright Dalton Maag Ltd, http://www.daltonmaag.com/ */
+@font-face {
+        font-family: "OFTN Aller";
+        src: url("../fonts/OFTN-Aller-Bold.woff") format("woff"),
+             url("../fonts/OFTN-Aller-Bold.ttf") format("truetype");
+        font-weight: bold;
+        font-style: normal;
+}
+@font-face {
+        font-family: "OFTN Aller";
+        src: url("../fonts/OFTN-Aller.woff") format("woff"),
+             url("../fonts/OFTN-Aller.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #FFF none no-repeat fixed top left;
+	background-image: -webkit-gradient(linear, 100% 0%, 100% 100%, from(#EEE), color-stop(25%, #FFF), color-stop(75%, #FFF), to(#EEE));
+	background-image: -moz-linear-gradient(top, #EEE, #FFF, #FFF, #EEE);
+	font-family: Asap, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: #000;
+	padding: 10px;
+	overflow-y: scroll;
+	/* Removed due to chrome bug: text-rendering: optimizeLegibility;  */
+}
+
+a { color: black; /*#3A0075; */text-decoration: underline; }
+
+h1 { font-size: 2em;    margin-bottom: .5em; }
+h2 { font-size: 1.5em;  margin-bottom: .5em; }
+h3 { font-size: 1.17em; margin-bottom: .5em; }
+h4 { font-size: 1em;    margin-bottom: 1.12em; }
+h5 { font-size: .83em;  margin-bottom: 1.5em; }
+h6 { font-size: .75em;  margin-bottom: 1.67em; }
+p, blockquote, ul, fieldset, form, ol, dl, dir, menu { margin-bottom: 1.12em; }
+ol, ul, dir, menu, dd { margin-left: 40px }
+
+p, li {
+	line-height: 1.5em;
+}
+
+dt {
+	font-size: 1.2em;
+	padding: .5em 0;
+	/*border-top: 1px solid lightgrey; /*#3A0075;*/
+}
+
+#container {
+	width: 720px;
+	margin: 0 auto;
+	padding-bottom: 2em;
+}
+
+header {
+	text-align: center;
+	color: black;
+	margin-bottom: 0px;
+}
+
+h1 {
+	margin: 3em 0 .3em;
+}
+
+h1.logo {
+	font-size: 6.5em;
+	margin: .3em 0 .15em;
+}
+
+header p {
+	position: relative;
+	font-style: italic;
+	padding: .15em 0;
+	border: 1px solid black;
+	border-style: solid none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+
+.oftn {
+	font-family: "OFTN Aller";
+	font-weight: normal;
+}
+.oftn-strong {
+	font-family: "OFTN Aller";
+	font-weight: bold;
+}
+
+footer {
+	color: #666;
+	font-size: .8em;
+	text-align: center;
+	margin-top: 4em;
+}
+
+footer span {
+	display: inline-block;
+}
+
+/*
+.accordian-header::before {
+	color: #808080;
+	display: inline-block;
+	-webkit-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-o-transition: all 1s ease-out;
+	transition: all 1s ease-out;
+}
+
+.accordian-header::before {
+	content: "▼ ";
+}
+
+.accordian-header.closed::before {
+	-moz-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+*/
+
+.accordian-header {
+	background-color: #181818;
+	margin: 20px 0;
+	cursor: pointer;
+	padding: 5px;
+	color: white;
+}
+
+.accordian-panel {
+	overflow: hidden;
+	padding: 0 5px;
+}
+
+@media only screen and (max-width: 720px), only screen and (max-device-width: 720px) {
+	#container {
+		width: 100%;
+	}
+	h1.logo {
+		margin: 0;
+	}
+}
+
+@media print {
+	body {
+		font-size: 12px;
+	}
+	#container {
+		width: 100%;
+	}
+	.accordian-header {
+		-webkit-print-color-adjust: exact;
+	}
+	.accordian-panel {
+		display: block !important;
+	}
+}

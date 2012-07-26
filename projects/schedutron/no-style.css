@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 1em;
+	text-align: center;
+	font-family: sans-serif;
+	line-height: 1.5em;
+}
+
+#container {
+	text-align: left;
+	text-align: justify;
+	width: 850px;
+	margin: 0 auto;
+	padding-bottom: 3em;
+}
+
+h1, h2 {
+	margin-top: 2em;
+	padding-top: 1.5em;
+	margin-bottom: 1.5em;
+	font-family: serif;
+	font-weight: normal;
+}
+
+a {
+	color: #00f;
+}
+
+p {
+	margin: 1em 0;
+	color: #333;
+}
+
+ol {
+	padding-left: 40px;
+	margin-top: 2em;
+}
+
+em.fill-in {
+	color: #666;
+}

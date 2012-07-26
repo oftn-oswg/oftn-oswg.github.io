@@ -1,0 +1,28 @@
+User Stories
+============
+
+Given a user
+And a maintainer
+And a project profile
+When the user creates a task
+Then maintainer should be notified
+And the task is only visible to the creator and maintainer.
+
+Given the maintainer is notified of a new task
+When the maintainer accepts the task
+Then the user who submitted the task should be notified
+And the task becomes public.
+
+Given a public task with at least one contribution
+And a user other than the one who submitted the task
+When the other user adds to the bounty
+Then the maintainer is notified
+And the contributors are notified
+And those who have added to the bounty are notified.
+
+Given a public task
+And contributions from two contributors
+When the task is marked complete by the creator
+Then the project maintainer can allocate the reward
+And the reward is distributed to the contributors
+And the contributors are notified.
