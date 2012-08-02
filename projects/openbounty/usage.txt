@@ -1,8 +1,0 @@
-OpenBounty Example Usage
-========================
-
-Bob, a project maintainer, decides to support his project with OpenBounty. He then creates a profile for his project.
-
-Alice stumbles across the project and has an idea to improve it. She is willing to offer $35 to speed its development. She creates a bounty on the project and types up a description of the requested feature. Eve, who happens to be intercepting communications between Bob and Alice, notices Alice's bounty and thinks it's a good idea. She attaches a bounty of her own of $25.
-
-Candy and Daisy create patches that together implement Alice's idea. Bob marks the feature as complete with OpenBounty, and that it was 60% completed by Candy, and 40% completed by Daisy. Alice and Eve get an email saying that their bounty is completed, and they both decide money they put in their bounty goes to Candy and Daisy proportional to the amount of work they did (as determined by Bob).
