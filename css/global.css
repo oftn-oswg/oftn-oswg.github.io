@@ -104,11 +104,21 @@ footer {
 	color: #666;
 	font-size: .8em;
 	text-align: center;
-	margin-top: 4em;
+	margin-top: 3em;
 }
 
-footer span {
+
+footer ul {
+	list-style: none;
+	margin-top: .5em;
+}
+
+footer ul li {
 	display: inline-block;
+}
+
+footer ul li:not(:first-child)::before {
+	content: " - "
 }
 
 /*
