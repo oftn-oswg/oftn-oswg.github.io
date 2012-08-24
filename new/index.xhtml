@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<title>ΩF:∅ Member Initiation</title>
+<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+<meta name="viewport" content="width=device-width"/>
+<style type="text/css">
+.say {
+	background-color: #eee;
+	font-family: Monaco, Courier New, monospace;
+	color: black;
+	padding: 1em;
+	margin: 1em 0;
+	border: 3px solid black;
+	border-style: solid none;
+}
+.flow {
+	font-style: italic;
+	color: blue;
+}
+.input {
+	border-bottom: 3px solid black;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+}
+.input textarea {
+	width: 100%;
+	height: 6em;
+	font-family: Monaco, Courier New, monospace;
+	font-size: 12px;
+}
+.error {
+	background-color: #fdd;
+	border: 1px solid #a00;
+	margin: 1em 0;
+	padding: 1em;
+}
+</style>
+</head>
+<body>
+
+	<div id="container">
+		<h1>ΩF:∅ Member Initiation</h1>
+
+		<div class="say">
+			<p>Hello, I am now going to go through the steps to add you as a member of ΩF:∅. It should take 5 minutes of your time.</p>
+			<p>I just need the following information from you in JSON format: {"name": "Full professional name", "nick": "Preferred nickname (like your IRC nick)", "github": "Github username", "url": "Website/blog URL" || false, "email": "E-mail address"}</p>
+			<p>Thanks. Please take the time to add #oftn to your autojoin list if you haven't done so. Also, please subscribe to the ΩF:∅ mailing list at https://groups.google.com/group/oftn</p>
+			<p>The first step is to add you to the ΩF:∅ Titanpad account (on http://oftn.titanpad.com/ ). We use this for collaborative real-time development. I'll send you an e-mail with your temporary password.</p>
+		</div>
+
+		<h2>Input</h2>
+
+		<div class="input">
+			<p><pre><code>Example:
+{"name": "Devin Samarin", "nick": "eboy", "github": "eboyjr", "url": false, "email": "eboyjr14@gmail.com"}</code></pre></p>
+			<textarea id="input"></textarea>
+			<div id="error" class="error" style="display: none;"></div>
+		</div>
+
+		<h2>TitanPad</h2>
+
+		<ol class="do">
+			<li>Open up <a href="https://oftn.titanpad.com/ep/admin/account-manager/new">https://oftn.titanpad.com/ep/admin/account-manager/new</a></li>
+			<li>E-mail: <span class="flow data-email">their email</span>.</li>
+			<li>Full name: <span class="flow data-nick">their preferred nick</span></li>
+			<li>Optionally change the temporary password</li>
+			<li>Click "Create Account"</li>
+		</ol>
+
+		<h2>GitHub</h2>
+
+		<ol class="do">
+			<li>Go to <a href="https://github.com/organizations/oftn/teams/30032">https://github.com/organizations/oftn/teams/30032</a> (The ΩF:∅ members team on Github). Scroll to the bottom and add <span class="flow data-github">their GitHub username</span>.</li>
+			<li>Go to <a href="https://github.com/oftn">https://github.com/oftn</a>, scroll down to their username, and click "Publicize membership".</li>
+		</ol>
+
+		<h2>Website</h2>
+		
+		<ol class="do">
+			<li>
+				<p>Open up the website index.xhtml page to edit and add the person in alphabetical order by first name in the following form:</p>
+				<pre><code>&lt;li&gt;&lt;a title="<span class="flow data-nick">{nick}</span>" href="<span class="flow data-url">{url}</span>"&gt;<span class="flow data-name">{name}</span>&lt;/a&gt;&lt;/li&gt;</code></pre>
+			</li>
+			<li>Push to oftn.org git repository</li>
+		</ol>
+
+		<h2>Freenode</h2>
+
+		<ol class="do">
+			<li>In IRC, do <pre><code>/msg #freenode-gab Can I get oftn/member/<span class="flow data-nick">{nick}</span> for <span class="flow data-nick">{nick}</span>?</code></pre></li>
+		</ol>
+
+		<div class="say">
+			<p>You should have received an e-mail for Titanpad. Please use the e-mail to sign in and change your password.</p>
+			<p>Also, you now have push/pull access to ΩF:∅'s repositories on Github.</p>
+			<p>Lastly, please go to http://oftn.org/ and verify that your name and website link have no mistakes.</p>
+			<p>Congratulations you are now an honorary member of the ΩF:∅ foundation!</p>
+		</div>
+
+	</div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+function DOMFlow(root, filter) {
+	this.root = root;
+
+	var flows = this.root.getElementsByClassName("flow");
+	for (var i = 0, len = flows.length; i < len; i++) {
+		var flow = flows[i];
+		flow.setAttribute("data-flow-default", flow.innerText || flow.textContent);
+	}
+
+	this.flows = flows;
+	this.filter = filter;
+}
+
+DOMFlow.prototype.update = function(data) {
+	if (typeof data !== "object") {
+		return;
+	}
+
+	for (var key in data) {
+		if (data.hasOwnProperty(key)) {
+			this.setFlow (key, this.filter ? this.filter(data[key], key, data) : data[key]);
+		}
+	}
+};
+
+DOMFlow.prototype.setFlow = function(key, value) {
+	var flows = this.root.getElementsByClassName("data-"+key);
+	for (var i = 0, len = flows.length; i < len; i++) {
+		var flow = flows[i];
+		while (flow.lastChild) {
+			flow.removeChild(flow.lastChild);
+		}
+		if (value) {
+			flow.appendChild(document.createTextNode(value));
+		} else {
+			flow.appendChild(document.createTextNode(flow.getAttribute("data-flow-default")));
+		}
+	}
+};
+
+
+var flow = new DOMFlow(document.body, function(value, key, data) {
+	if (key === "url" && !value) {
+		value = data["github"] ? "https://github.com/" + data["github"] : null;
+	}
+	return value;
+});
+var input = document.getElementById("input");
+input.addEventListener("keyup", update);
+
+function update() {
+	var data = {name: null, nick: null, github: null, url: null, email: null}, val = this.value;
+	try {
+		data = JSON.parse(val);
+		set_error(null);
+	} catch (e) {
+		set_error(e);
+	}
+	flow.update(data);
+}
+
+function set_error(e) {
+	var element = document.getElementById("error");
+	if (e) {
+		element.style.display = "block";
+		while (element.lastChild) {
+			element.removeChild(element.lastChild);
+		}
+		element.appendChild(document.createTextNode(e));
+	} else {
+		element.style.display = "none";
+	}
+}
+/*]]>*/
+</script>
+
+</body>
+</html>
