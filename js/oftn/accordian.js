@@ -1,17 +1,58 @@
 var ΩF_0 = ΩF_0 || {};
 
 ΩF_0.Accordian = function(element) {
+	var self;
+
+	self = this;
 	this.element = element;
 	this.convert ();
+
+	if (window.addEventListener) {
+		window.addEventListener ("hashchange", hashchange);
+	} else if (window.attachEvent) {
+		window.attachEvent ("onhashchange", hashchange);
+	}
+
+	function hashchange() {
+		var ref, panel;
+
+		ref = document.querySelector (location.hash);
+		panel = self.find_relevant_panel (ref);
+
+		if (panel && self.is_hidden (panel)) {
+			self.toggle (panel);
+		}
+	}
 };
 
 ΩF_0.Accordian.prototype.convert = function() {
-	var children;
+	var children, panel, panel_open, ref;
 
 	children = this.element.getElementsByClassName ("accordian-panel");
-	for (var i = 0, len = children.length; i < len; i++) {
-		this.create_panel (children[i], i !== 0);
+
+	panel_open = children[0];
+	if (location.hash) {
+		ref = document.querySelector (location.hash);
+		panel = this.find_relevant_panel (ref);
+		if (panel) {
+			panel_open = panel;
+		}
 	}
+
+	for (var i = 0, len = children.length; i < len; i++) {
+		panel = children[i];
+		this.create_panel (panel, panel !== panel_open);
+	}
+};
+
+ΩF_0.Accordian.prototype.find_relevant_panel = function (ref) {
+	while (ref) {
+		if (ref.classList && ref.classList.contains ("accordian-panel")) {
+			return ref;
+		}
+		ref = ref.nextSibling;
+	}
+	return null;
 };
 
 ΩF_0.Accordian.prototype.create_panel = function(element, hide) {
