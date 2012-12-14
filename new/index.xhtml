@@ -76,12 +76,24 @@
 			<li>Go to <a href="https://github.com/oftn">https://github.com/oftn</a>, scroll down to their username, and click "Publicize membership".</li>
 		</ol>
 
+		<h2>Drive</h2>
+
+		<ol class="do">
+			<li>Load <a href="https://drive.google.com/">Google Drive</a>.</li>
+			<li>Navigate to the <code>ΩF:∅ Foundation</code> folder, click the drop down arrow and select "Share...".</li>
+			<li>
+				<p>Under "Add people:" paste in the following:</p>
+				<pre><code>"<span class="flow data-name">Full Name</span>" &lt;<span class="flow data-email">their+email@gmail.com</span>&gt;</code></pre>
+			</li>
+			<li>Click "Share &amp; save".</li>
+		</ol>
+
 		<h2>Website</h2>
 		
 		<ol class="do">
 			<li>
 				<p>Open up the website index.xhtml page to edit and add the person in alphabetical order by first name in the following form:</p>
-				<pre><code>&lt;li&gt;&lt;a title="<span class="flow data-nick">{nick}</span>" href="<span class="flow data-url">{url}</span>"&gt;<span class="flow data-name">{name}</span>&lt;/a&gt;&lt;/li&gt;</code></pre>
+				<pre><code>&lt;li&gt;&lt;a title="<span class="flow data-nick">{nick}</span>" href="<span class="flow data-url">{url}</span>"&gt;<span class="flow data-name">{name}</span>&lt;/a&gt; (<span class="flow data-nick">{nick}</span>)&lt;/li&gt;</code></pre>
 			</li>
 			<li>Push to oftn.org git repository</li>
 		</ol>
