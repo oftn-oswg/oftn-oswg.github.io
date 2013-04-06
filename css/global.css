@@ -82,8 +82,6 @@ h1.logo {
 	position: relative;
 	font-style: italic;
 	padding: .15em 0;
-	border: 1px solid black;
-	border-style: solid none;
 }
 
 h1, h2, h3, h4, h5, h6 {
