@@ -6,15 +6,13 @@
    Aller is copyright Dalton Maag Ltd, http://www.daltonmaag.com/ */
 @font-face {
         font-family: "OFTN Aller";
-        src: url("../fonts/OFTN-Aller-Bold.woff") format("woff"),
-             url("../fonts/OFTN-Aller-Bold.ttf") format("truetype");
+        src: url("../fonts/OFTN-Aller-Bold.woff") format("woff");
         font-weight: bold;
         font-style: normal;
 }
 @font-face {
         font-family: "OFTN Aller";
-        src: url("../fonts/OFTN-Aller.woff") format("woff"),
-             url("../fonts/OFTN-Aller.ttf") format("truetype");
+        src: url("../fonts/OFTN-Aller.woff") format("woff");
         font-weight: normal;
         font-style: normal;
 }
@@ -75,11 +73,12 @@ h1 {
 }
 
 h1.logo {
-	font-size: 6.5em;
+	font-size: 6em;
 	margin: .3em 0 .15em;
 }
 
-header p {
+.tagline {
+	text-align: center;
 	position: relative;
 	font-style: italic;
 	padding: .15em 0;
