@@ -73,8 +73,9 @@ h1 {
 }
 
 h1.logo {
-	font-size: 6em;
+	font-size: 3em;
 	margin: .3em 0 .15em;
+	font-weight: bold;
 }
 
 .tagline {
