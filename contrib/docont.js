@@ -15,15 +15,19 @@ var jsonp = [];
 				if (repo) {
 					data[repo.name] = [];
 					getContributors(repo.name, function(contributors) {
-						(function nextContributor() {
-							var contributor = contributors.pop();
-							if (contributor) {
-								data[repo.name].push(contributor);
-								nextContributor();
-							} else {
-								nextRepo();
-							}
-						}());
+						if (Array.isArray(contributors)) {
+							(function nextContributor() {
+								var contributor = contributors.pop();
+								if (contributor) {
+									data[repo.name].push(contributor);
+									nextContributor();
+								} else {
+									nextRepo();
+								}
+							}());
+						} else {
+							nextRepo();
+						}
 					});
 				} else {
 					loader.style.display = "none";
