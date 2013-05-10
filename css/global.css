@@ -79,15 +79,21 @@ h1.logo {
 }
 
 @media (max-width: 940px) {
-	font-size: 5em;
+	h1.logo {
+		font-size: 5em;
+	}
 }
 
 @media (max-width: 800px) {
-	font-size: 4em;
+	h1.logo {
+		font-size: 4em;
+	}
 }
 
 @media (max-width: 650px) {
-	font-size: 3em;
+	h1.logo {
+		font-size: 3em;
+	}
 }
 
 .tagline {
