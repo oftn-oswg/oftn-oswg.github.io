@@ -181,6 +181,7 @@ footer ul li:not(:first-child)::before {
 .accordian-panel {
 	overflow: hidden;
 	padding: 0 0.5em;
+	width: 706px; /* To avoid slideDown animation jumping at the end */
 }
 
 .projects dd { margin: 0; }
@@ -201,6 +202,9 @@ footer ul li:not(:first-child)::before {
 	h1.logo {
 		margin: 0;
 	}
+	.accordian-panel {
+		width: auto;
+	}
 }
 
 @media print {
@@ -215,5 +219,6 @@ footer ul li:not(:first-child)::before {
 	}
 	.accordian-panel {
 		display: block !important;
+		width: auto;
 	}
 }
