@@ -5,16 +5,18 @@
 /* OFTN Aller is a modified version of Aller with an empty set and a raised colon.
    Aller is copyright Dalton Maag Ltd, http://www.daltonmaag.com/ */
 @font-face {
-        font-family: "OFTN Aller";
-        src: url("../fonts/OFTN-Aller-Bold.woff") format("woff");
-        font-weight: bold;
-        font-style: normal;
+	font-family: "OFTN Aller";
+	src: url("../fonts/OFTN-Aller-Bold.woff") format("woff"),
+	     url("../fonts/OFTN-Aller-Bold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
 }
-@font-face {
-        font-family: "OFTN Aller";
-        src: url("../fonts/OFTN-Aller.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
+	@font-face {
+	font-family: "OFTN Aller";
+	src: url("../fonts/OFTN-Aller.woff") format("woff"),
+	     url("../fonts/OFTN-Aller.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
