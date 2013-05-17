@@ -74,6 +74,7 @@ h1 {
 h1.logo {
 	font-size: 6em;
 	font-weight: bold;
+	margin-bottom: 0.25em;
 }
 
 @media (max-width: 940px) {
