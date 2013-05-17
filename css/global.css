@@ -26,6 +26,7 @@ body {
 	background: #FFF none no-repeat fixed top left;
 	background-image: -webkit-gradient(linear, 100% 0%, 100% 100%, from(#EEE), color-stop(25%, #FFF), color-stop(75%, #FFF), to(#EEE));
 	background-image: -moz-linear-gradient(top, #EEE, #FFF, #FFF, #EEE);
+	background-image: linear-gradient(top, #EEE, #FFF, #FFF, #EEE);
 	font-family: Asap, Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	font-weight: normal;
