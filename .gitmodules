@@ -1,0 +1,3 @@
+[submodule "projects/core-estimator"]
+	path = projects/core-estimator
+	url = git://github.com/oftn/core-estimator.git
