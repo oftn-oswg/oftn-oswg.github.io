@@ -49,6 +49,10 @@ h6 { font-size: .75em;  margin-bottom: 1.67em; }
 p, blockquote, ul, fieldset, form, ol, dl, dir, menu { margin-bottom: 1.12em; }
 ol, ul, dir, menu, dd { margin-left: 40px }
 
+h3 {
+	border-bottom: 1px dotted #aaa;
+}
+
 dt {
 	font-size: 1.2em;
 	padding: .5em 0;
@@ -189,6 +193,23 @@ footer ul li:not(:first-child)::before {
 
 .projects dd { margin: 0; }
 .projects dd p { text-align: justify; }
+
+.members_list {
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 0;
+  list-style: square inside;
+
+  -webkit-column-count: 2;
+  -webkit-column-gap: 0px; 
+  -webkit-column-rule: 0px dotted black;
+  -moz-column-count: 2;
+  -moz-column-gap: 0px;  
+  -moz-column-rule: 0px dotted black;
+  column-count: 2;
+  column-gap: 0px; 
+  column-rule: 0px dotted black;
+}
 
 
 /* Android doesn't render background-scroll: fixed very well, here is a hack. */
