@@ -7,11 +7,3 @@
 if (!/bot\b/.test(navigator.userAgent)) {
 	document.title = document.title.replace(/∅/g, "Ø");
 }
-
-/*
- * Add Google Analytics' tracking script
- */
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-20491376-1']);
-_gaq.push(['_setDomainName', 'oftn.org']);
-_gaq.push(['_trackPageview']);

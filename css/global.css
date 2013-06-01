@@ -1,17 +1,14 @@
 @charset "utf-8";
 
-@import url("http://fonts.googleapis.com/css?family=Asap");
+/**
+ * Fonts section
+ **/
+
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400italic,400|Raleway);
 
 /* OFTN Aller is a modified version of Aller with an empty set and a raised colon.
    Aller is copyright Dalton Maag Ltd, http://www.daltonmaag.com/ */
 @font-face {
-	font-family: "OFTN Aller";
-	src: url("../fonts/OFTN-Aller-Bold.woff") format("woff"),
-	     url("../fonts/OFTN-Aller-Bold.ttf") format("truetype");
-	font-weight: bold;
-	font-style: normal;
-}
-	@font-face {
 	font-family: "OFTN Aller";
 	src: url("../fonts/OFTN-Aller.woff") format("woff"),
 	     url("../fonts/OFTN-Aller.ttf") format("truetype");
@@ -19,110 +16,102 @@
 	font-style: normal;
 }
 
-* {
-	margin: 0;
-	padding: 0;
-}
+/**
+ * Base styles section
+ **/
 
 body {
 	background: #FFF none no-repeat fixed top left;
 	background-image: -webkit-gradient(linear, 100% 0%, 100% 100%, from(#EEE), color-stop(25%, #FFF), color-stop(75%, #FFF), to(#EEE));
 	background-image: -moz-linear-gradient(top, #EEE, #FFF, #FFF, #EEE);
 	background-image: linear-gradient(top, #EEE, #FFF, #FFF, #EEE);
-	font-family: Asap, Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	line-height: 2em;
+	font: 11pt/2 Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+	text-rendering: optimizeLegibility;
+	margin: 0; padding: 0;
+}
+
+a { color: red; /*#3A0075; */text-decoration: none; position: relative; background-color: #f3f3f3; padding: 0.25em; }
+a:hover { text-decoration: underline; }
+a:focus { outline: 1px dotted grey; }
+a:active { top: 1px; text-decoration: none; }
+
+h2, h3, h4, h5, h6, dt, .tagline {
 	font-weight: normal;
-	color: #000;
-	overflow-y: scroll;
-	/* Removed due to chrome bug: text-rendering: optimizeLegibility;  */
+	font-family: Vollkorn, Georgia, Times, Times New Roman, serif;
 }
 
-a { color: black; /*#3A0075; */text-decoration: underline; }
+h1 { font-size: 2em;    margin: 0 0 .5em 0; }
+h2 { font-size: 2em;  margin: 0 0 .5em 0; }
+h3 { font-size: 1.25em; margin: 0 0 .5em 0; }
+h4 { font-size: 1em;    margin: 0 0 1.12em 0; }
+h5 { font-size: .83em;  margin: 0 0 1.5em 0; }
+h6 { font-size: .75em;  margin: 0 0 1.67em 0; }
 
-h1 { font-size: 2em;    margin-bottom: .5em; }
-h2 { font-size: 1.5em;  margin-bottom: .5em; }
-h3 { font-size: 1.17em; margin-bottom: .5em; }
-h4 { font-size: 1em;    margin-bottom: 1.12em; }
-h5 { font-size: .83em;  margin-bottom: 1.5em; }
-h6 { font-size: .75em;  margin-bottom: 1.67em; }
-p, blockquote, ul, fieldset, form, ol, dl, dir, menu { margin-bottom: 1.12em; }
-ol, ul, dir, menu, dd { margin-left: 40px }
-
-h3 {
-	border-bottom: 1px dotted #aaa;
-}
+p, blockquote, ul, fieldset, form, ol, dl, dir, menu { margin: 0 0 1em 0; }
+dir, menu, dd { margin: 0; }
 
 dt {
 	font-size: 1.2em;
-	padding: .5em 0;
-	/*border-top: 1px solid lightgrey; /*#3A0075;*/
+	margin: 1em 0 0 0;
 }
 
-#container {
-	width: 720px;
-	margin: 2em auto;
-}
+/**
+ * Header styles
+ **/
 
-header {
-	text-align: center;
-	color: black;
-	margin: 3em 0;
-}
+header { padding: 2em; }
 
-h1 {
+header h1 {
 	margin: 0;
 	line-height: 1em;
-}
-
-h1.logo {
 	font-size: 6em;
-	font-weight: bold;
-	margin-bottom: 0.25em;
-}
-
-@media (max-width: 940px) {
-	h1.logo {
-		font-size: 5em;
-	}
-}
-
-@media (max-width: 800px) {
-	h1.logo {
-		font-size: 4em;
-	}
-}
-
-@media (max-width: 650px) {
-	h1.logo {
-		font-size: 3em;
-	}
+	font-weight: normal;
 }
 
 .tagline {
-	text-align: center;
-	position: relative;
+	margin: 8px 0 0 0;
 	font-style: italic;
-	padding: 0;
-	margin: 0;
+	font-size: 1.5em;
+	line-height: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
+#links {
+	position: absolute;
+	top: 2em;
+	right: 2em;
+	text-align: right;
+}
+#links ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#links ul li {
+	margin-left: 1em;
+	margin-bottom: 0.5em;
+}
+#links ul li a {
+	display: inline-block;
+	padding: 0 0.5em;
+	margin-top: -1px;
+	color: black;
+	border-radius: 3px;
+	background-color: white;
 }
 
 .oftn {
-	font-family: "OFTN Aller";
+	font-family: "OFTN Aller", Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-weight: normal;
-}
-.oftn-strong {
-	font-family: "OFTN Aller";
-	font-weight: bold;
+	text-rendering: optimizeSpeed;
 }
 
+/**
+ * Footer styles
+ **/
 footer {
 	color: #666;
 	text-align: center;
+	clear: left;
 }
 
 
@@ -139,110 +128,91 @@ footer ul li:not(:first-child)::before {
 	content: " - "
 }
 
-/*
+/**
+ * Layout
+ **/
 
-{ This code is dedicated in memory of Eli Grey. }
-
-.accordian-header::before {
-	color: #808080;
-	display: inline-block;
-	-webkit-transition: all 1s ease-out;
-	-moz-transition: all 1s ease-out;
-	-o-transition: all 1s ease-out;
-	transition: all 1s ease-out;
+.panel {
+	float: left;
+	margin-bottom: 3em;
+}
+.panel-inner {
+	padding: 0 2em;
 }
 
-.accordian-header::before {
-	content: "▼ ";
+#about { width: 25%; }
+#projects { width: 50%; }
+#members { width: 25%; }
+
+/**
+ * Panel style
+ **/
+
+.panel h3 {
+	border-bottom: 1px dotted #aaa;
+	font-variant: small-caps;
 }
 
-.accordian-header.closed::before {
-	-moz-transform: rotate(-90deg);
-	-webkit-transform: rotate(-90deg);
-	-o-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-}
-
-*/
-
-.accordian-header::after {
-	content: "[+]";
-	float: right;
-	font: .65em monospace;
-	line-height: 26px;
-}
-
-.accordian-header.open::after {
-	content: "[-]";
-}
-
-.accordian-header {
-	background-color: #181818;
-	margin-bottom: 1em;
-	cursor: pointer;
-	padding: 0.25em 0.5em;
-	color: white;
-}
-
-.accordian-panel {
-	overflow: hidden;
-	padding: 0 0.5em;
-	width: 706px; /* To avoid slideDown animation jumping at the end */
-}
-
-.projects dd { margin: 0; }
-.projects dd p { text-align: justify; }
+#projects dd { margin: 0; }
+#projects dd p { text-align: justify; }
+#projects dl { padding: 0 0 0 3em; margin-bottom: 2em; }
 
 .members_list {
   margin: 0;
   margin-bottom: 1em;
   padding: 0;
   list-style: square inside;
-
-  -webkit-column-count: 2;
-  -webkit-column-gap: 0px; 
-  -webkit-column-rule: 0px dotted black;
-  -moz-column-count: 2;
-  -moz-column-gap: 0px;  
-  -moz-column-rule: 0px dotted black;
-  column-count: 2;
-  column-gap: 0px; 
-  column-rule: 0px dotted black;
 }
 
 
-/* Android doesn't render background-scroll: fixed very well, here is a hack. */
-@media screen and (max-device-width: 480px) {
-	body {
-		background: #fdfdfd;
+@media (max-width: 1140px) {
+	header h1 { font-size: 5em; }
+
+	#links {
+		position: static;
+		margin-top: 1em;
+		margin-left: -0.5em;
+		text-align: left;
+	}
+	#links ul li {
+		float: none;
+		display: inline-block;
+		margin-bottom: 0;
+	}
+	#links ul li:first-child {
+		margin-left: 0;
+	}
+	#links ul li a {
+		background-color: #f3f3f3;
+	}
+
+	#about { width: auto; }
+	#about h2 { display: none; }
+	#projects { clear: left; width: 50%; }
+	#members { width: 50%; }
+}
+
+@media (max-width: 960px) {
+	header h1 { font-size: 4em; }
+	#about { float: none; }
+	#projects { float: none; width: auto; }
+	#members { float: none; width: auto; }
+
+	#members .members_list {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
 	}
 }
 
-@media only screen and (max-width: 720px), only screen and (max-device-width: 720px) {
-	#container {
-		width: 100%;
-	}
-	h1.logo {
-		margin: 0;
-	}
-	.accordian-panel {
-		width: auto;
-	}
-}
-
-@media print {
-	body {
-		font-size: 12px;
-	}
-	#container {
-		width: 100%;
-	}
-	.accordian-header {
-		-webkit-print-color-adjust: exact;
-	}
-	.accordian-panel {
-		display: block !important;
-		width: auto;
+@media (max-width: 600px) {
+	header h1 { font-size: 3em; }
+	.tagline { font-size: 1.2em; }
+	#links { display: none; }
+	#projects dl { padding: 0; }
+	#members .members_list {
+		-webkit-column-count: auto;
+		-moz-column-count: auto;
+		column-count: auto;
 	}
 }
