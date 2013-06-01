@@ -164,6 +164,13 @@ footer ul li:not(:first-child)::before {
   list-style: square inside;
 }
 
+/* Android doesn't render background-scroll: fixed very well, here is a hack. */
+@media screen and (max-device-width: 480px) {
+	body {
+		background: white;
+	}
+}
+
 
 @media (max-width: 1140px) {
 	header h1 { font-size: 5em; }
