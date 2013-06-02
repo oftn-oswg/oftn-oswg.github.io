@@ -160,6 +160,7 @@ footer ul li:not(:first-child)::before {
 .panel h3 {
 	border-bottom: 1px dotted #aaa;
 	font-variant: small-caps;
+	text-rendering: auto;
 }
 
 #projects dd { margin: 0; }
