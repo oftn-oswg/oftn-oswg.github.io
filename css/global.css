@@ -130,7 +130,7 @@ footer ul {
 }
 
 footer ul li {
-	display: inline-block;
+	display: inline;
 }
 
 footer ul li:not(:first-child)::before {
