@@ -3,32 +3,88 @@
 <head>
 <meta charset="utf-8"/>
 <title>ΩF:∅ Member Initiation</title>
-<link rel="stylesheet" type="text/css" href="../css/global.css"/>
 <meta name="viewport" content="width=device-width"/>
 <style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400italic,400|Raleway);
+
+/* OFTN Aller is a modified version of Aller with an empty set and a raised colon.
+   Aller is copyright Dalton Maag Ltd, http://www.daltonmaag.com/ */
+@font-face {
+	font-family: "OFTN Aller";
+	src: url("../fonts/OFTN-Aller-Bold.woff") format("woff"),
+		url("../fonts/OFTN-Aller-Bold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family: "OFTN Aller";
+	src: url("../fonts/OFTN-Aller.woff") format("woff"),
+	     url("../fonts/OFTN-Aller.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.oftn, .oftn-strong {
+	font-family: "OFTN Aller", Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	text-rendering: optimizeSpeed;
+}
+.oftn-strong { font-weight: bold; }
+
+
+body {
+	font: 11pt/2 Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+	text-rendering: optimizeLegibility;
+	padding: 2em;
+}
+
+#container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+a { color: red; }
+
+h1, h2 {
+	font-weight: normal;
+	margin: 0;
+}
+
 .say {
-	background-color: #eee;
 	font-family: Monaco, Courier New, monospace;
 	color: black;
-	padding: 1em;
-	margin: 1em 0;
-	border: 3px solid black;
-	border-style: solid none;
+	margin: 3em 0;
+	margin-left: 100px;
+	line-height: 1.45;
+	position: relative;
+	color: #383838;
 }
-.flow {
+
+.say:before {
+	display: block;
+	content: "\201C";
+	font-size: 160px;
 	font-style: italic;
-	color: blue;
+	position: absolute;
+	left: -100px;
+	top: -40px;
+	color: #2a2a2a;
+	font-family: Georgia, serif;
 }
-.input {
-	border-bottom: 3px solid black;
-	padding-bottom: 1em;
-	margin-bottom: 1em;
+
+.flow {
+	color: red;
+padding: 0.25em; background-color: #f3f3f3;
 }
 .input textarea {
 	width: 100%;
 	height: 6em;
 	font-family: Monaco, Courier New, monospace;
-	font-size: 12px;
+	font-size: inherit;
+	background-color: #d5d5d5;
+	border: none;
+	line-height: inherit;
+	outline: none;
 }
 .error {
 	background-color: #fdd;
@@ -36,28 +92,36 @@
 	margin: 1em 0;
 	padding: 1em;
 }
+.do {
+	margin: 0 0 3em 0;
+}
+
+.steps {
+	padding: 2em;
+}
+.steps p, .steps pre {
+	margin: 0;
+}
 </style>
 </head>
 <body>
 
 	<div id="container">
-		<h1>ΩF:∅ Member Initiation</h1>
+		<h1><span class="oftn-strong">ΩF:∅</span> Member Initiation</h1>
 
 		<div class="say">
-			<p>Hello, I am now going to go through the steps to add you as a member of ΩF:∅. It should take 5 minutes of your time.</p>
+			<p>Hello, I am now going to go through the steps to add you as a member of <span class="oftn-strong">ΩF:∅</span>. It should take 5 minutes of your time.</p>
 			<p>I just need the following information from you in JSON format: {"name": "Full professional name", "nick": "Preferred nickname (like your IRC nick)", "github": "Github username", "url": "Website/blog URL" || false, "email": "E-mail address"}</p>
-			<p>Thanks. Please take the time to add #oftn to your autojoin list if you haven't done so. Also, please subscribe to the ΩF:∅ mailing list at https://groups.google.com/group/oftn-wg</p>
-			<p>The first step is to add you to the ΩF:∅ Titanpad account (on http://oftn.titanpad.com/ ). We use this for collaborative real-time development. I'll send you an e-mail with your temporary password.</p>
+			<p>Thanks. Please take the time to add #oftn to your autojoin list if you haven't done so. Also, please subscribe to the <span class="oftn-strong">ΩF:∅</span> mailing list at https://groups.google.com/group/oftn-wg</p>
+			<p>The first step is to add you to the <span class="oftn-strong">ΩF:∅</span> Titanpad account (on http://oftn.titanpad.com/ ). We use this for collaborative real-time development. I'll send you an e-mail with your temporary password.</p>
 		</div>
-
-		<h2>Input</h2>
 
 		<div class="input">
-			<p><pre><code>Example:
-{"name": "Devin Samarin", "nick": "eboy", "github": "eboyjr", "url": false, "email": "eboyjr14@gmail.com"}</code></pre></p>
-			<textarea id="input"></textarea>
+			<textarea id="input">{"name": "Devin Samarin", "nick": "dsamarin", "github": "eboyjr", "url": false, "email": "eboyjr14@gmail.com"}</textarea>
 			<div id="error" class="error" style="display: none;"></div>
 		</div>
+
+		<div class="steps">
 
 		<h2>TitanPad</h2>
 
@@ -106,6 +170,8 @@
 		<ol class="do">
 			<li>In IRC, do <pre><code>/msg #freenode-gab Can I get oftn/member/<span class="flow data-nick">{nick}</span> for <span class="flow data-nick">{nick}</span>?</code></pre></li>
 		</ol>
+
+		</div>
 
 		<div class="say">
 			<p>You should have received an e-mail for Titanpad. Please use the e-mail to sign in and change your password.</p>
