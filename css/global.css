@@ -37,6 +37,10 @@ body {
 	margin: 0; padding: 0;
 }
 
+::-webkit-selection { background-color: black; color: white; }
+::-moz-selection { background-color: black; color: white; }
+::selection { background-color: black; color: white; }
+
 a { color: red; /*#3A0075; */text-decoration: none; position: relative; background-color: #f3f3f3; padding: 0.25em; }
 a:hover { text-decoration: underline; }
 a:focus { outline: 1px dotted grey; }
