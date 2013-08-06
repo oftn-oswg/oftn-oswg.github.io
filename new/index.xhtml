@@ -112,28 +112,18 @@ padding: 0.25em; background-color: #f3f3f3;
 		<div class="say">
 			<p>Hello, I am now going to go through the steps to add you as a member of <span class="oftn-strong">ΩF:∅</span>. It should take 5 minutes of your time.</p>
 			<p>I just need the following information from you in JSON format: {"name": "Full professional name", "nick": "Preferred nickname (like your IRC nick)", "github": "Github username", "url": "Website/blog URL" || false, "email": "E-mail address"}</p>
-			<p>Thanks. Please take the time to add #oftn to your autojoin list if you haven't done so. Also, please join our Google+ community for news, events, and general talk here at https://plus.google.com/communities/112859235384765702467</p>
-			<p>The first step is to add you to the <span class="oftn-strong">ΩF:∅</span> Github organization. Next I will add you to the shared <span class="oftn-strong">ΩF:∅</span> Google Drive folder. Lastly, I will request an IRC cloak for your account and add you to the website.</p>
+			<p>Thanks. Please take the time to add #oftn to your autojoin list if you haven't done so. Also, please join our Google+ community for news, events, and general talk at https://plus.google.com/communities/112859235384765702467</p>
+			<p>The first step is to add you to the <span class="oftn-strong">ΩF:∅</span> Github organization. Next I will add you to the shared &#8220;<span class="oftn"><span class="oftn-strong">ΩF:∅</span> Working Group</span>&#8221; Google Drive folder. Lastly, I will add you to the website and request an IRC cloak for your Freenode account.</p>
 			
 		</div>
 
 		<div class="input">
-			<textarea id="input">{"name": "Devin Samarin", "nick": "dsamarin", "github": "eboyjr", "url": false, "email": "eboyjr14@gmail.com"}</textarea>
+			<textarea id="input">{"name": "Devin Samarin", "nick": "dsamarin", "github": "dsamarin", "url": false, "email": "eboyjr14@gmail.com"}</textarea>
 			<div id="error" class="error" style="display: none;"></div>
 		</div>
 
 		<div class="steps">
-<!--
-		<h2>TitanPad</h2>
 
-		<ol class="do">
-			<li>Open up <a href="https://oftn.titanpad.com/ep/admin/account-manager/new">https://oftn.titanpad.com/ep/admin/account-manager/new</a></li>
-			<li>E-mail: <span class="flow data-email">their email</span>.</li>
-			<li>Full name: <span class="flow data-nick">their preferred nick</span></li>
-			<li>Optionally change the temporary password</li>
-			<li>Click "Create Account"</li>
-		</ol>
--->
 		<h2>GitHub</h2>
 
 		<ol class="do">
@@ -161,7 +151,8 @@ padding: 0.25em; background-color: #f3f3f3;
 				<pre><code>&lt;li class="<span class="flow data-nick">{nick}</span>"&gt;&lt;a title="<span class="flow data-nick">{nick}</span>" href="<span class="flow data-url">{url}</span>"&gt;<span class="flow data-name">{name}</span>&lt;/a&gt; (<span class="flow data-nick">{nick}</span>)&lt;/li&gt;</code></pre>
 			</li>
 			<li>
-				<p>Add user's gravar image to avatars.css</p>
+				<p>Add user's gravar image to avatars.css:</p>
+				<pre><code>.<span class="flow data-nick">nick</span> { list-style-image: url(<span class="flow data-avatar">https://secure.gravatar.com/avatar/?s=18&amp;d=mm</span>); }</code></pre>
 			</li>
 			<li>Push to oftn.org git repository</li>
 		</ol>
@@ -169,22 +160,22 @@ padding: 0.25em; background-color: #f3f3f3;
 		<h2>Freenode</h2>
 
 		<ol class="do">
-			<li>In IRC, do <pre><code>/msg #freenode-gab Can I get oftn/member/<span class="flow data-nick">{nick}</span> for <span class="flow data-nick">{nick}</span>?</code></pre></li>
+			<li>In IRC, do <pre><code>/msg #freenode-gab Can I get oftn/member/<span class="flow data-nick">{nick}</span> for <span class="flow data-nick">{nick}</span> please?</code></pre></li>
 		</ol>
 
 		</div>
 
 		<div class="say">
-			<p>You should have received an e-mail for Titanpad. Please use the e-mail to sign in and change your password.</p>
-			<p>Also, you now have push/pull access to ΩF:∅'s repositories on Github.</p>
-			<p>Lastly, please go to http://oftn.org/ and verify that your name and website link have no mistakes.</p>
-			<p>Congratulations you are now an honorary member of the ΩF:∅ foundation!</p>
+			<p>All finished. Please go to http://wg.oftn.org/ and verify that your name and website link have no mistakes.</p>
+			<p>Congratulations you are now an honorary member of the <span class="oftn"><span class="oftn-strong">ΩF:∅</span> Working Group</span>!</p>
 		</div>
 
 	</div>
 
 <script type="text/javascript">
 /*<![CDATA[*/
+var jsonp = [];
+
 function DOMFlow(root, filter) {
 	this.root = root;
 
@@ -243,7 +234,11 @@ function update() {
 	} catch (e) {
 		set_error(e);
 	}
-	flow.update(data);
+
+	gravatar(data.github, function(img) {
+		data.avatar = img;
+		flow.update(data);
+	});
 }
 
 function set_error(e) {
@@ -257,6 +252,32 @@ function set_error(e) {
 	} else {
 		element.style.display = "none";
 	}
+}
+
+var gravatarcache = {};
+function gravatar(username, callback) {
+	if (gravatarcache[username]) {
+		callback(gravatarcache[username]);
+	} else {
+		if (typeof console !== "undefined") { console.log("Fetching avatar for " + username); }
+		github("/users/"+username, function(data) {
+			var result = data.avatar_url;
+			result = result.replace(/\?d=.*$/g, "?s=18&d=mm");
+
+			gravatarcache[username] = result;
+			callback(result);
+		});
+	}
+}
+
+function github(res, callback) {
+	var id = jsonp.length;
+	jsonp.push(function(data) { callback(data.data); });
+	var callident = "jsonp["+id+"]";
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src = "https://api.github.com" + res + "?callback=" + encodeURIComponent(callident);
+	document.body.appendChild(script);
 }
 /*]]>*/
 </script>
