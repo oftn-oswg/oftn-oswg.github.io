@@ -255,6 +255,7 @@ function set_error(e) {
 }
 
 var gravatarcache = {};
+var defaultavatar = "https://secure.gravatar.com/avatar/?s=18&d=mm";
 function gravatar(username, callback) {
 	if (gravatarcache[username]) {
 		callback(gravatarcache[username]);
@@ -262,7 +263,11 @@ function gravatar(username, callback) {
 		if (typeof console !== "undefined") { console.log("Fetching avatar for " + username); }
 		github("/users/"+username, function(data) {
 			var result = data.avatar_url;
-			result = result.replace(/\?d=.*$/g, "?s=18&d=mm");
+			if (result) {
+				result = result.replace(/\?d=.*$/g, "?s=18&d=mm");
+			} else {
+				result = defaultavatar;
+			}
 
 			gravatarcache[username] = result;
 			callback(result);
