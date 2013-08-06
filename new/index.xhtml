@@ -111,14 +111,14 @@ padding: 0.25em; background-color: #f3f3f3;
 
 		<div class="say">
 			<p>Hello, I am now going to go through the steps to add you as a member of <span class="oftn-strong">ΩF:∅</span>. It should take 5 minutes of your time.</p>
-			<p>I just need the following information from you in JSON format: {"name": "Full professional name", "nick": "Preferred nickname (like your IRC nick)", "github": "Github username", "url": "Website/blog URL" || false, "email": "E-mail address"}</p>
+			<p>I just need this information from you in JSON --- {"name": "full professional name", "nick": "preferred internal nick", "irc": "your current irc nick", "github": "username", "url": "website/blog" || false, "email": "address"}</p>
 			<p>Thanks. Please take the time to add #oftn to your autojoin list if you haven't done so. Also, please join our Google+ community for news, events, and general talk at https://plus.google.com/communities/112859235384765702467</p>
 			<p>The first step is to add you to the <span class="oftn-strong">ΩF:∅</span> Github organization. Next I will add you to the shared &#8220;<span class="oftn"><span class="oftn-strong">ΩF:∅</span> Working Group</span>&#8221; Google Drive folder. Lastly, I will add you to the website and request an IRC cloak for your Freenode account.</p>
 			
 		</div>
 
 		<div class="input">
-			<textarea id="input">{"name": "Devin Samarin", "nick": "dsamarin", "github": "dsamarin", "url": false, "email": "eboyjr14@gmail.com"}</textarea>
+			<textarea id="input">{"name": "Devin Samarin", "nick": "dsamarin", "irc": "dsamarin", "github": "dsamarin", "url": false, "email": "eboyjr14@gmail.com"}</textarea>
 			<div id="error" class="error" style="display: none;"></div>
 		</div>
 
@@ -160,7 +160,7 @@ padding: 0.25em; background-color: #f3f3f3;
 		<h2>Freenode</h2>
 
 		<ol class="do">
-			<li>In IRC, do <pre><code>/msg #freenode-gab Can I get oftn/member/<span class="flow data-nick">{nick}</span> for <span class="flow data-nick">{nick}</span> please?</code></pre></li>
+			<li>In IRC, do <pre><code>/msg #freenode-gab Can I get oftn/member/<span class="flow data-nick">{nick}</span> for <span class="flow data-irc">{nick}</span> please?</code></pre></li>
 		</ol>
 
 		</div>
@@ -227,7 +227,7 @@ var input = document.getElementById("input");
 input.addEventListener("keyup", update);
 
 function update() {
-	var data = {name: null, nick: null, github: null, url: null, email: null}, val = this.value;
+	var data = {name: null, nick: null, irc: null, github: null, url: null, email: null}, val = this.value;
 	try {
 		data = JSON.parse(val);
 		set_error(null);
