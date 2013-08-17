@@ -178,7 +178,7 @@ footer ul li:not(:first-child)::before {
 
 #projects dd { margin: 0; }
 #projects dd p { text-align: justify; }
-#projects dl { padding: 0 0 0 3em; margin-bottom: 2em; }
+#projects dl { padding: 0 0 0 2em; margin-bottom: 2em; }
 
 .members_list {
   margin: 0;
