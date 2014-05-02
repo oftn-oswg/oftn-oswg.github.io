@@ -28,31 +28,7 @@
 	}
 
 	// Get the location of the currently running script
-	var path = (function () {
-		var
-		  filename = "fileName"
-		, stack = "stack"
-		, stacktrace = stack + "trace"
-		, loc
-		, matcher = function (stack, matchedLoc) {
-			loc = matchedLoc;
-		}
-		;
-
-		try { 0(); } catch (ex) {
-			if (filename in ex) { // Firefox
-				loc = ex[filename];
-			} else if (stacktrace in ex) { // Opera
-				ex[stacktrace].replace(/called from line \d+, column \d+ in (.*):/gm, matcher);
-			} else if (stack in ex) { // WebKit, Blink, and IE10
-				ex[stack].replace(/at.*?\(?(\S+):\d+:\d+\)?$/g, matcher);
-			}
-			if (!loc) {
-				throw new Error("Your browser does not currently support Core Estimator.");
-			}
-			return loc;
-		}
-	}());
+	var path = (document.currentScript || document.scripts[document.scripts.length-1]).src;
 
 	// Path to workload.js is derived from the path of the running script.
 	var workload = path.replace(/\/[^\/]+$/, "/workload.js");
