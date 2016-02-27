@@ -75,7 +75,10 @@ em {
  * Header styles
  **/
 
-header { padding: 2em; }
+header {
+	padding: 2em;
+	text-align: center;
+}
 
 header h1 {
 	margin: 0;
