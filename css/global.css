@@ -125,7 +125,6 @@ header h1 {
 .oftn, .oftn-strong {
 	font-family: "OFTN Aller", Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-weight: normal;
-	text-rendering: optimizeSpeed;
 }
 .oftn-strong { font-weight: bold; }
 
