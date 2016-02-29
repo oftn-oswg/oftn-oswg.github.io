@@ -238,7 +238,7 @@ footer ul li:not(:first-child)::before {
 }
 
 @media (max-width: 600px) {
-	header h1 { font-size: 4.3em; }
+	header h1 { font-size: 3.8em; }
 	.tagline { font-size: 1.2em; }
 	#links { display: none; }
 	#projects dl { padding: 0; }
