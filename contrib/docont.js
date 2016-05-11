@@ -49,7 +49,7 @@ var jsonp = [];
 
 	function getMembers(callback) {
 		var members = {};
-		github("/orgs/oftn/members", function(data) {
+		github("/orgs/oftn-oswg/members", function(data) {
 			for (var i = 0, len = data.length; i < len; i++) {
 				members[data[i].login] = true;
 			}
@@ -58,11 +58,11 @@ var jsonp = [];
 	}
 
 	function getRepositories(callback) {
-		github("/orgs/oftn/repos", callback);
+		github("/orgs/oftn-oswg/repos", callback);
 	}
 
 	function getContributors(repo, callback) {
-		github("/repos/oftn/"+repo+"/contributors", callback);
+		github("/repos/oftn-oswg/"+repo+"/contributors", callback);
 	}
 	
 	function drawData(members, data) {
