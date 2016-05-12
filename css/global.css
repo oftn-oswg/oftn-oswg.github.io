@@ -8,15 +8,15 @@
    Aller is copyright Dalton Maag Ltd, http://www.daltonmaag.com/ */
 @font-face {
 	font-family: "OFTN Aller";
-	src: url("../fonts/OFTN-Aller-Bold.woff") format("woff"),
-		url("../fonts/OFTN-Aller-Bold.ttf") format("truetype");
+	src: url("https://oftn.org/fonts/OFTN-Aller-Bold.woff2") format("woff2"),
+		url("https://oftn.org/fonts/OFTN-Aller-Bold.woff") format("woff");
 	font-weight: bold;
 	font-style: normal;
 }
 @font-face {
 	font-family: "OFTN Aller";
-	src: url("../fonts/OFTN-Aller.woff") format("woff"),
-	     url("../fonts/OFTN-Aller.ttf") format("truetype");
+	src: url("https://oftn.org/fonts/OFTN-Aller.woff2") format("woff2"),
+	     url("https://oftn.org/fonts/OFTN-Aller.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
