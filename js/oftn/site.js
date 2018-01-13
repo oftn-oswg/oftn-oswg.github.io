@@ -14,7 +14,7 @@ ga('send', 'pageview');
 
 (function() { // randomized per-tab emoji favicons
 	var favicon_emoji = "👨‍🔬 👩‍🔬 👨‍💻 👩‍💻 👨‍🚀 👩‍🚀 🤯 🤖 ⚡ 🌧️ 🚀 💻 🧠 👻 📜 ☄️ 🛸 🌌 🌠 🛰️ ✨ 🔥".split(" ");
-	if (navigator.platform === "Win32") { // only Microsoft implements hacker cat
+	if (/^Win\d+$/.test(navigator.platform)) { // only Microsoft implements hacker cat
 		favicon_emoji.push("🐱‍💻");
 	}
 	var favicon = sessionStorage.favicon = sessionStorage.favicon || favicon_emoji[crypto.getRandomValues(new Uint8Array(1))[0] % favicon_emoji.length];
